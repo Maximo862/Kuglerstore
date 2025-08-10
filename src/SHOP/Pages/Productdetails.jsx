@@ -9,6 +9,7 @@ import { FaBoxOpen } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { Relatedproducts } from "../Components/Relatedproducts";
+import { Stars } from "../Components/Stars";
 
 export const Productdetails = ({ products }) => {
   const [product, setproduct] = useState(null);
@@ -44,9 +45,10 @@ export const Productdetails = ({ products }) => {
           <h2 className="fw-bold">{product.title}</h2>
           <p className="text-muted">Category: {product.category}</p>
           <h4 className="text-success">${product.price}</h4>
-          <p>Stock: {product.stock}</p>
+          <p className="mb-0">Stock: {product.stock}</p>
+            <Stars rating={product.rating}/>
           <p>
-            <FcRating /> Rating: {product.rating}
+             Rating: {product.rating}
           </p>
 
           <p className="text-success mt-3">

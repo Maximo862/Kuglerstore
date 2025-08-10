@@ -93,7 +93,6 @@ button:focus-visible {
 }
 
 
-/* Carrusel  */
 
 .carr-per {
   max-width: 100%;
@@ -170,9 +169,6 @@ button:focus-visible {
 
 }
 
-
-/* Imagenes main  */
-
 .imgsmain-container {
   margin-top: 4rem;
   margin-bottom: 4rem;
@@ -197,7 +193,7 @@ button:focus-visible {
 }
 
 /* 
-PRODUCTOS DETALLES */
+Product details */
 
 
 .details_container {
