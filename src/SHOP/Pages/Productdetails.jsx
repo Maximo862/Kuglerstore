@@ -45,11 +45,11 @@ export const Productdetails = ({ products }) => {
           <h2 className="fw-bold">{product.title}</h2>
           <p className="text-muted">Category: {product.category}</p>
           <h4 className="text-success">${product.price}</h4>
-          <p className="mb-0">Stock: {product.stock}</p>
-            <Stars rating={product.rating}/>
+          <p>Stock: {product.stock}</p>
           <p>
              Rating: {product.rating}
           </p>
+            <Stars rating={product.rating}/>
 
           <p className="text-success mt-3">
             <TbTruckDelivery /> Free shipping nationwide
