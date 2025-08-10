@@ -5,13 +5,12 @@ export const FilterContext = createContext();
 export function Shopcontext({ children }) {
   const [Darkmode, setDarkmode] = useState(false);
 
-  
   const [fav, setfav] = useState(() => {
     const local = localStorage.getItem("fav");
     return local ? JSON.parse(local) : [];
   });
-  
-  const numberoffavorites = fav.length
+
+  const numberoffavorites = fav.length;
 
   useEffect(() => {
     if (Darkmode) {
@@ -84,7 +83,7 @@ export function Shopcontext({ children }) {
         message,
         Mesagge,
         Handlemessage,
-        numberoffavorites
+        numberoffavorites,
       }}
     >
       {children}

@@ -34,7 +34,7 @@ export function Carousel() {
             className="d-block w-100 img-fluid carrusel-img"
             alt="..."
           />
-          <div className="carousel-caption d-none d-md-block">
+          <div className="carousel-caption">
             <h5>Big discounts just for you!</h5>
             <p>Up to 50% Off selected items</p>
           </div>
@@ -45,7 +45,7 @@ export function Carousel() {
             className="d-block w-100 img-fluid carrusel-img"
             alt="..."
           />
-          <div className="carousel-caption d-none d-md-block">
+          <div className="carousel-caption">
             <h5>Best sellers this week</h5>
             <p>Top rated products</p>
           </div>
@@ -56,7 +56,7 @@ export function Carousel() {
             className="d-block w-100 img-fluid carrusel-img"
             alt="..."
           />
-          <div className="carousel-caption d-none d-md-block">
+          <div className="carousel-caption">
             <h5>Fast & free delivery available</h5>
             <p>Free shoping for orders over 30$</p>
           </div>

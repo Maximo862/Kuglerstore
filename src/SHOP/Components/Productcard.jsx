@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FilterContext } from "../Context/Shopcontext";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
+import { Stars } from "./Stars";
 
 export function Productcard({
   producto,
@@ -30,7 +31,11 @@ export function Productcard({
         <strong>Category: {category}</strong> <br />
         <strong>Price: {price}$</strong> <br />
         <strong>Stock: {stock}</strong> <br />
-        <strong>Rating: {rating}</strong> <br />
+        <strong>
+          Rating: {rating}
+          {<Stars rating={rating} />}
+        </strong>{" "}
+        <br />
       </div>
       <div className="product-butons">
         {showaddtocart && (
@@ -45,23 +50,33 @@ export function Productcard({
           </button>
         )}
         <br />
-        <button className="buton-animation" onClick={() => Onclickfav(producto)}>
-        <span>Favorites: {fav.some((pro) => pro.id == id) ? <FaHeart/> : <FaRegHeart/>}</span>
+        <button
+          className="buton-animation"
+          onClick={() => Onclickfav(producto)}
+        >
+          <span>
+            Favorites:{" "}
+            {fav.some((pro) => pro.id == id) ? <FaHeart /> : <FaRegHeart />}
+          </span>
         </button>
         <br />
         {showviewmoredetails && (
           <Link to={`/Productdetails/${id}`}>
-           <button className="buton-animation" >
-            <span>View more details</span>
-          </button>
+            <button className="buton-animation">
+              <span>View more details</span>
+            </button>
           </Link>
         )}
         <br />
         {showremovefromcart && (
-          <button className="buton-animation" onClick={() => Removefromcart(producto)}><span>Delete</span></button>
+          <button
+            className="buton-animation"
+            onClick={() => Removefromcart(producto)}
+          >
+            <span>Delete</span>
+          </button>
         )}
       </div>
     </div>
   );
 }
-
