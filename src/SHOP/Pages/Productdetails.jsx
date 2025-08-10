@@ -46,11 +46,10 @@ export const Productdetails = ({ products }) => {
           <p className="text-muted">Category: {product.category}</p>
           <h4 className="text-success">${product.price}</h4>
           <p>Stock: {product.stock}</p>
-          <p>
-             Rating: {product.rating}
-          </p>
-            <Stars rating={product.rating}/>
-
+          <p>Rating: {product.rating}</p>
+          <div className="d-flex justify-content-center">
+            <Stars rating={product.rating} />
+          </div>
           <p className="text-success mt-3">
             <TbTruckDelivery /> Free shipping nationwide
           </p>
@@ -69,17 +68,18 @@ export const Productdetails = ({ products }) => {
               className="btn btn-outline-secondary"
               onClick={() => Onclickfav(product)}
             >
-            Add to favorites: {fav.some((pro) => pro.id == product.id ) ? <FaHeart/> : <FaRegHeart/>}
+              Add to favorites:{" "}
+              {fav.some((pro) => pro.id == product.id) ? (
+                <FaHeart />
+              ) : (
+                <FaRegHeart />
+              )}
             </button>
           </div>
         </div>
       </motion.div>
 
-      <Relatedproducts
-      products={products}
-      product={product}
-      />
-    
-</>
+      <Relatedproducts products={products} product={product} />
+    </>
   );
 };
