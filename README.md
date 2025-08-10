@@ -37,5 +37,6 @@ Reusable components are stored in /components.
 Author
 Maximo Kugler — Frontend Developer
 GitHub: https://github.com/Maximo862
-Email: Maximokugler
+Email: Maximokugler9@gmail.com
+
 
