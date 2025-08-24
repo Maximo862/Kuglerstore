@@ -69,3 +69,6 @@ function App() {
 }
 
 export default App;
+
+
+//codigo secret de bcrypt en .env hacer

@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 
 export const FilterContext = createContext();
 
-export function Shopcontext({ children }) {
+export function ShopProvider({ children }) {
   const [Darkmode, setDarkmode] = useState(false);
 
   const [fav, setfav] = useState(() => {
