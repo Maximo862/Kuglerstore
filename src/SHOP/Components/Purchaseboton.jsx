@@ -12,7 +12,7 @@ export function Purchaseboton() {
     setfinished(true);
 
     setTimeout(() => {
-      navigate("/");
+      navigate("/Shop");
       Clearcart();
     }, 2000);
   }

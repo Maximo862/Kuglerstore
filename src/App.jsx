@@ -10,6 +10,11 @@ import { Direction } from "./SHOP/Pages/Cart/Direction.jsx";
 import { Payment } from "./SHOP/Pages/Cart/Payment.jsx";
 import { Checkout } from "./SHOP/Pages/Cart/Checkout.jsx";
 import { Footer } from "./SHOP/Components/Footer.jsx";
+import { Home } from "./SHOP/Pages/Home.jsx";
+import Protectedroutes from "./SHOP/Protectedroutes.jsx";
+import { Register } from "./SHOP/Pages/Register.jsx";
+import { Login } from "./SHOP/Pages/Login.jsx";
+
 
 function useCustom() {
   const [filters, setfilters] = useState({
@@ -49,8 +54,12 @@ function App() {
     <>
       <Header filtrador={setfilters} />
       <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/register" element={<Register/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route element={<Protectedroutes/>}>
         <Route
-          path="/"
+          path="/Shop"
           element={<Shop change={setfilters} products={Filterproducts} />}
         />
         <Route path="/Cart" element={<CartItem />} />
@@ -62,6 +71,7 @@ function App() {
         <Route path="/Direction" element={<Direction />} />
         <Route path="/Direction/Payment" element={<Payment />} />
         <Route path="/Direction/Payment/Checkout" element={<Checkout />} />
+      </Route>
       </Routes>
       <Footer />
     </>
@@ -70,5 +80,6 @@ function App() {
 
 export default App;
 
-
-//codigo secret de bcrypt en .env hacer
+//Problema del token al recargar la pagina
+// devolver el username 
+// tema loading

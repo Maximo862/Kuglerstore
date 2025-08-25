@@ -1,12 +1,12 @@
-const Validationschema = (schema) => (req,res,next) => {
-    try {
-schema.parse(req.body)
-next()
-    } catch (err) {
-if (err) return res.status(500).json({"el error es ": err})
-    }
-}
+const Validationschema = (schema) => (req, res, next) => {
+  try {
+    schema.parse(req.body);
+    next();
+  } catch (err) {
+    if (err) return res.status(500).json({ "the error is ": err });
+  }
+};
 
 module.exports = {
-    Validationschema
-}
+  Validationschema,
+};
