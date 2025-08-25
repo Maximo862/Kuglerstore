@@ -47,7 +47,7 @@ export function Authprovider({ children }) {
           setUser(res)
         }
       } catch (error) {
-        console.log("error en verify: ", err);
+        console.log(error);
         setIsAuthenticated(false);
          setUser(null)
       } finally {
@@ -61,7 +61,7 @@ export function Authprovider({ children }) {
 async function Logout() {
     try {
         const res = await Logoutreq()
-        console.log("LOGOUT: ", res)
+        console.log(res)
         setIsAuthenticated(false)
          setUser(null)
     } catch (error) {
