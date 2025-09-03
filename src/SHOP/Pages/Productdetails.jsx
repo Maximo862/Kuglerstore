@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { Cartcontext } from "../Pages/Cart/Cartcontext";
 import { FilterContext } from "../Context/Shopcontext";
 import { motion } from "framer-motion";
-import { FcRating } from "react-icons/fc";
 import { TbTruckDelivery } from "react-icons/tb";
 import { FaBoxOpen } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";

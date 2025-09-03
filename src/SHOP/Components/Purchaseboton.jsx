@@ -19,7 +19,9 @@ export function Purchaseboton() {
   return (
     <div className="text-end m-5">
       <p>The purchase is incomplete</p>
-      <button onClick={() => Checkout()}>Finish Purchase</button>
+      <button className="checkout-button" onClick={() => Checkout()}>
+        Finish Purchase
+      </button>
       {finished && (
         <div className="alert alert-success text-center mt-3" role="alert">
           ¡Purchase made successfully!

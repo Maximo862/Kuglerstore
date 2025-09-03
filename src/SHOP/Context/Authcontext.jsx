@@ -7,14 +7,12 @@ export function Authprovider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [loading2, setLoading2] = useState(true);
 
   async function Register(user) {
     try {
       const res = await RegisterReq(user);
-      console.log("register res: ", res);
       setIsAuthenticated(true);
-      setUser(res)
+      setUser(res.user.username)
     } catch (err) {
       setIsAuthenticated(false);
      console.log(err)
@@ -25,9 +23,8 @@ export function Authprovider({ children }) {
   async function Login(user) {
     try {
       const res = await LoginReq(user);
-      console.log("login res: ", res);
       setIsAuthenticated(true);
-      setUser(res)
+      setUser(res.user.username)
     } catch (err) {
       setIsAuthenticated(false);
       console.log(err)
@@ -44,7 +41,7 @@ export function Authprovider({ children }) {
            setUser(null)
         } else {
           setIsAuthenticated(true);
-          setUser(res)
+          setUser(res.user.username)
         }
       } catch (error) {
         console.log(error);
@@ -66,10 +63,8 @@ async function Logout() {
          setUser(null)
     } catch (error) {
         console.log(error)
-    } finally {
-setLoading2(false)
     }
-}
+  }
 
   return (
     <Authcontext.Provider
@@ -79,8 +74,7 @@ setLoading2(false)
         Login,
         loading,
         Logout,
-        user,
-        loading2
+        user
       }}
     >
       {children}

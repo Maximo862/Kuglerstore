@@ -9,13 +9,13 @@ export async function RegisterReq(user) {
       body: JSON.stringify(user),
     });
 
-    if (!res.ok) console.log("!resok");
-
     const data = await res.json();
+
+    if (!res.ok) throw data;
 
     return data;
   } catch (err) {
-    throw (err);
+    throw err;
   }
 }
 
@@ -28,13 +28,13 @@ export async function LoginReq(user) {
       body: JSON.stringify(user),
     });
 
-    if (!res.ok) console.log("!resok");
-
     const data = await res.json();
+
+    if (!res.ok) throw data;
 
     return data;
   } catch (err) {
-    throw (err);
+    throw err;
   }
 }
 
@@ -45,9 +45,9 @@ export async function Verifyreq() {
       credentials: "include",
     });
 
-    if (!res.ok) console.log("!resok");
+    const data = await res.json();
 
-    const data = res.json();
+    if (!res.ok) throw data;
 
     return data;
   } catch (err) {
@@ -62,11 +62,12 @@ export async function Logoutreq() {
       credentials: "include",
     });
 
-    if (!res.ok) console.log("!resok");
-
     const data = await res.json();
+
+    if (!res.ok) throw data;
 
     return data;
   } catch (err) {
- throw err;
-  }}
+    throw err;
+  }
+}

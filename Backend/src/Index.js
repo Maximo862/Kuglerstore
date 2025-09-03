@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const { InitDB } = require("./db/db");
 const { router } = require("./routes/routes");
 require("dotenv").config();
 const cookieparser = require("cookie-parser");
@@ -17,8 +16,7 @@ app.use(
 app.use(cookieparser());
 app.use(router);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, async () => {
   console.log(`SERVIDOR CORRIENDO EN http://localhost:${PORT}`);
-  await InitDB();
 });

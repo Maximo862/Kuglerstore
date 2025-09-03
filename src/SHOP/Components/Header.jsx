@@ -9,20 +9,20 @@ import { FaHeart, FaLightbulb } from "react-icons/fa";
 import { Authcontext } from "../Context/Authcontext";
 import { CiLogin } from "react-icons/ci";
 import { MdOutlinePermIdentity } from "react-icons/md";
+import { ImExit } from "react-icons/im";
 
 export function Header() {
   const { numberofproducts } = useContext(Cartcontext);
   const { Darkmode, setDarkmode, numberoffavorites } =
     useContext(FilterContext);
-  const { isAuthenticated, Logout , loading2,loading} = useContext(Authcontext);
+  const { isAuthenticated, Logout, loading } = useContext(Authcontext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   async function HandleLogout() {
-    await Logout()
-    if (loading === false && loading2 === false) {
-      
-      navigate("/")
+    await Logout();
+    if (loading === false) {
+      navigate("/");
     }
   }
 
@@ -72,14 +72,11 @@ export function Header() {
               </li>
 
               <li className="nav-item">
-                <button
-                  className="nav-link"
-                  onClick={() => HandleLogout()}
-                >
-                  <FaLightbulb />
+                <button className="nav-link" onClick={() => HandleLogout()}>
+                  <ImExit />
                   Logout
                 </button>
-</li>
+              </li>
 
               <li className="nav-item">
                 <button

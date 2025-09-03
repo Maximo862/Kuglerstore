@@ -55,7 +55,7 @@ const { Handleformnavigate } = useContext(Cartcontext)
           <div>Secure payment with SSL encryption</div>
         </div>
         <div className="container-fluid text-end">
-        <button type="submit">Confirm Purchase</button>
+        <button className="checkout-button" type="submit">Confirm Purchase</button>
         </div>
       </form>
     </>

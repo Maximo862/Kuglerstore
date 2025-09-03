@@ -106,7 +106,7 @@ const navigate = useNavigate()
           </div>
         </div>
         <div className="col-12 text-end">
-          <button type="submit">Submit form</button>
+          <button className="checkout-button" type="submit">Submit form</button>
         </div>
       </form>
     </>

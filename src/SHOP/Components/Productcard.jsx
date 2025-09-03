@@ -5,6 +5,7 @@ import { FilterContext } from "../Context/Shopcontext";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { Stars } from "./Stars";
+import { CiCirclePlus,CiCircleMinus } from "react-icons/ci";
 
 export function Productcard({
   producto,
@@ -15,11 +16,13 @@ export function Productcard({
   price,
   stock,
   rating,
+  quantity,
+  showquantity,
   showaddtocart,
   showviewmoredetails,
   showremovefromcart,
 }) {
-  const { Addtocart, Removefromcart } = useContext(Cartcontext);
+  const { Addtocart, Removefromcart, handleQuantity } = useContext(Cartcontext);
   const { Onclickfav, Handlemessage, fav } = useContext(FilterContext);
 
   return (
@@ -31,6 +34,9 @@ export function Productcard({
         <strong>Category: {category}</strong> <br />
         <strong>Price: {price}$</strong> <br />
         <strong>Stock: {stock}</strong> <br />
+          {showquantity && (
+          <strong>Quantity: <CiCircleMinus onClick={() => handleQuantity(id, quantity > 1 ? quantity - 1 : 1)} className="cart-minus"/> {quantity} <CiCirclePlus  onClick={() => handleQuantity(id, quantity + 1)} className="cart-more"/><br /></strong>
+          )} 
         <strong>
           Rating: {rating}
           {<Stars rating={rating} />}

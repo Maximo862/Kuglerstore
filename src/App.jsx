@@ -80,6 +80,6 @@ function App() {
 
 export default App;
 
-//Problema del token al recargar la pagina
-// devolver el username 
-// tema loading
+
+// 1 menu hamburguesa, errores del login y register
+// 2 HACER EL BOTON DE CLEARCART

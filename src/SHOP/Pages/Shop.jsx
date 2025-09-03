@@ -5,10 +5,13 @@ import { Imgsmain } from "../Components/Imgsmain";
 import { Carousel } from "../Components/Carousel";
 import { Productcard } from "../Components/Productcard";
 import { Categoryfilter } from "../Components/Categoryfilter";
+import { Authcontext } from "../Context/Authcontext";
+import { PiHandWavingBold } from "react-icons/pi";
 
 export function Shop({ products, change }) {
   const { message, Mesagge } = useContext(FilterContext);
   const [categoryactive, setcategoryactive] = useState("All");
+  const {user} = useContext(Authcontext)
 
   const Typesofcategorys = [
     "beauty",
@@ -25,6 +28,7 @@ export function Shop({ products, change }) {
 
   return (
     <>
+    <h2 className="d-flex justify-content-center my-5">Nice to see you again, {user} <PiHandWavingBold/></h2>
       <Carousel />
       <Imgsmain />
       <Filters change={change} />
@@ -49,6 +53,7 @@ export function Shop({ products, change }) {
                   price={p.price}
                   stock={p.stock}
                   rating={p.rating}
+                  // showquantity={false}
                   showaddtocart={true}
                   showviewmoredetails={true}
                   showremovefromcart={false}

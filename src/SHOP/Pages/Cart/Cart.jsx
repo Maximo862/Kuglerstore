@@ -29,6 +29,8 @@ export function CartItem() {
                   price={p.price}
                   stock={p.stock}
                   rating={p.rating}
+                  quantity={p.quantity}
+                  showquantity={true}
                   showaddtocart={false}
                   showviewmoredetails={false}
                   showremovefromcart={true}
@@ -41,7 +43,9 @@ export function CartItem() {
         </ul>
       </div>
       <div className={"Precios mb-5"}>
-        <h4 className="mt-5">Subtotal: {pricecart.toFixed(2)} $</h4>
+        <h4 className="mt-5 subtotal-dark">
+          Subtotal: {pricecart.toFixed(2)} $
+        </h4>
         <h3 className={"price"}>Total: {Math.round(pricecart)} $</h3>
         {buttoncontinue && <Link to={"/Direction"}>Continue</Link>}
       </div>

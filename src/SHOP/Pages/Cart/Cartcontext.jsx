@@ -4,9 +4,9 @@ export const Cartcontext = createContext();
 
 export function Cartprovider({ children }) {
   const [cart, setCart] = useState(() => {
-    const savedcart = localStorage.getItem("cart")
+    const savedcart = localStorage.getItem("cart");
     return savedcart ? JSON.parse(savedcart) : [];
-  })
+  });
 
   function Addtocart(productadded) {
     setCart([...cart, productadded]);
@@ -53,6 +53,13 @@ export function Cartprovider({ children }) {
     setCart([]);
   }
 
+  function handleQuantity(productid, newvalue) {
+    const newcart = cart.map((p) =>
+      p.id === productid ? { ...p, quantity: newvalue } : p
+    );
+    setCart(newcart);
+  }
+
   return (
     <Cartcontext.Provider
       value={{
@@ -64,6 +71,7 @@ export function Cartprovider({ children }) {
         pricecart,
         buttoncontinue,
         Clearcart,
+        handleQuantity,
       }}
     >
       {children}

@@ -3,9 +3,8 @@ import { Cartcontext } from "./Cartcontext";
 import { ProgressTracker } from "./ProgressCart";
 import { Purchaseboton } from "../../Components/Purchaseboton";
 
-
 export function Checkout() {
-  const { cart,pricecart} = useContext(Cartcontext);
+  const { cart, pricecart } = useContext(Cartcontext);
 
   return (
     <div>
@@ -40,8 +39,8 @@ export function Checkout() {
           </tbody>
         </table>
       </div>
-      <h3 className="price text-center">Price: {pricecart.toFixed()}$</h3>
-     <Purchaseboton/>
+      <h3 className="price text-center">Price: {pricecart.toFixed(2)}$</h3>
+      <Purchaseboton />
     </div>
   );
 }
