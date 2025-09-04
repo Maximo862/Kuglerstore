@@ -3,7 +3,7 @@ const Validationschema = (schema) => (req, res, next) => {
     schema.parse(req.body);
     next();
   } catch (err) {
-    if (err) return res.status(500).json({ "the error is ": err });
+    if (err) return res.status(500).json({ error: "Invalid inputs"});
   }
 };
 

@@ -7,6 +7,7 @@ export function Authprovider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [autherrors, setAutherrors] = useState(null)
 
   async function Register(user) {
     try {
@@ -15,7 +16,7 @@ export function Authprovider({ children }) {
       setUser(res.user.username)
     } catch (err) {
       setIsAuthenticated(false);
-     console.log(err)
+     setAutherrors(err)
      setUser(null)
     }
   }
@@ -27,7 +28,7 @@ export function Authprovider({ children }) {
       setUser(res.user.username)
     } catch (err) {
       setIsAuthenticated(false);
-      console.log(err)
+      setAutherrors(err)
        setUser(null)
     }
   }
@@ -44,7 +45,6 @@ export function Authprovider({ children }) {
           setUser(res.user.username)
         }
       } catch (error) {
-        console.log(error);
         setIsAuthenticated(false);
          setUser(null)
       } finally {
@@ -62,7 +62,6 @@ async function Logout() {
         setIsAuthenticated(false)
          setUser(null)
     } catch (error) {
-        console.log(error)
     }
   }
 
@@ -74,7 +73,8 @@ async function Logout() {
         Login,
         loading,
         Logout,
-        user
+        user,
+        autherrors
       }}
     >
       {children}
