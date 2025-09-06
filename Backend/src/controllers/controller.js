@@ -35,7 +35,7 @@ async function register(req, res) {
       token,
     });
   } catch (err) {
-    res.status(500).json({ error: "Error in register" });
+    res.status(500).json({ error: "Error" });
   }
 }
 
@@ -51,7 +51,7 @@ async function login(req, res) {
 
     const passwordfound = await bcrypt.compare(password, user.password);
     if (!passwordfound)
-      return res.status(400).json({ error: "incorret password" });
+      return res.status(400).json({ error: "Incorret password" });
 
     const token = jsonwebtoken.sign({ id: user.id }, process.env.JWT_SECRET, {
       expiresIn: "1h",
@@ -63,7 +63,7 @@ async function login(req, res) {
       token,
     });
   } catch (err) {
-    return res.status(500).json({ error: "Error en login" });
+    return res.status(500).json({ error: "Error" });
   }
 }
 
@@ -81,7 +81,9 @@ async function verify(req, res) {
   jsonwebtoken.verify(token, process.env.JWT_SECRET, async (err, tok) => {
     if (err) return res.status(401).json({ error: "Unauthorized" });
 
-    const [rows] = await db.get("SELECT * FROM users WHERE id = ?", [tok.id]);
+    const [rows] = await pool.execute("SELECT * FROM users WHERE id = ?", [
+      tok.id,
+    ]);
     const user = rows[0];
 
     if (!user) return res.status(401).json({ error: "Unauthorized" });
