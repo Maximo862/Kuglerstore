@@ -29,10 +29,13 @@ async function register(req, res) {
       { expiresIn: "1h" }
     );
 
-    res.cookie("token", token).json({
+    res.cookie("token", token, {
+      httpOnly : true,
+      secure : true,
+      sameSite : "none"
+    }).json({
       message: "User created",
-      user: { id: result.insertId, username, email },
-      token,
+      user: { id: result.insertId, username, email }
     });
   } catch (err) {
     res.status(500).json({ error: "Error" });
@@ -57,10 +60,13 @@ async function login(req, res) {
       expiresIn: "1h",
     });
 
-    return res.cookie("token", token).json({
+    return res.cookie("token", token, {
+      httpOnly : true,
+      secure : true,
+      sameSite : "none"
+    }).json({
       message: "Succesful login",
       user: { id: user.id, username: user.username, email },
-      token,
     });
   } catch (err) {
     return res.status(500).json({ error: "Error" });
