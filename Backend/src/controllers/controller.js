@@ -29,16 +29,17 @@ async function register(req, res) {
       { expiresIn: "1h" }
     );
 
-    res.cookie("token", token, {
-      httpOnly : true,
-      secure: process.env.NODE_ENV === "production",
-  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax"
-    }).json({
-      message: "User created",
-      user: { id: result.insertId, username, email }
-    });
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      })
+      .json({
+        message: "User created",
+        user: { id: result.insertId, username, email },
+      });
   } catch (err) {
-    console.error("REGISTER ERROR ❌", err);
     res.status(500).json({ error: "Error: ", err });
   }
 }
@@ -61,28 +62,30 @@ async function login(req, res) {
       expiresIn: "1h",
     });
 
-    return res.cookie("token", token, {
-      httpOnly : true,
-    secure: process.env.NODE_ENV === "production",
-  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax"
-    }).json({
-      message: "Succesful login",
-      user: { id: user.id, username: user.username, email },
-    });
+    return res
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      })
+      .json({
+        message: "Succesful login",
+        user: { id: user.id, username: user.username, email },
+      });
   } catch (err) {
     return res.status(500).json({ error: "Error" });
   }
 }
 
 async function logout(req, res) {
-const cookieOptions = {
-  httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-  expires: new Date(0),
-};
+  const cookieOptions = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    expires: new Date(0),
+  };
 
-  res.cookie("token", "", cookieOptions)
+  res.cookie("token", "", cookieOptions);
   return res.status(200).json({ message: "Logout successful" });
 }
 

@@ -5,12 +5,10 @@ const {
   logout,
   verify,
 } = require("../controllers/controller");
-const { authrequired } = require("../middlewares/authrequired");
 const { Validationschema } = require("../middlewares/validateschema");
 const { Loginschema, Registerschema } = require("../schemas/Auth.schema");
 
 const router = express.Router();
-
 
 router.post("/login", Validationschema(Loginschema), login);
 
