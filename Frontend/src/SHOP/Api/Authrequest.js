@@ -1,4 +1,4 @@
-const URL = import.meta.env.VITE_API_URL;
+const URL = "https://kuglerstore-production.up.railway.app/";
 
 export async function RegisterReq(user) {
   try {
