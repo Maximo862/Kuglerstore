@@ -3,6 +3,7 @@ const cors = require("cors");
 const { router } = require("./routes/routes");
 require("dotenv").config();
 const cookieparser = require("cookie-parser");
+const { pool } = require("./db/db");
 
 const app = express();
 
@@ -17,6 +18,17 @@ app.use(
 );
 app.use(cookieparser());
 app.use(router);
+
+
+async function testConnection() {
+  try {
+    const [rows] = await pool.query("SELECT 1");
+    console.log("DB Connected ✅", rows);
+  } catch (err) {
+    console.error("DB Connection error ❌", err);
+  }
+}
+testConnection()
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, async () => {

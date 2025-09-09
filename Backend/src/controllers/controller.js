@@ -38,7 +38,8 @@ async function register(req, res) {
       user: { id: result.insertId, username, email }
     });
   } catch (err) {
-    res.status(500).json({ error: "Error" });
+    console.error("REGISTER ERROR ❌", err);
+    res.status(500).json({ error: "Error: ", err });
   }
 }
 

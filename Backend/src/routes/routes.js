@@ -11,6 +11,7 @@ const { Loginschema, Registerschema } = require("../schemas/Auth.schema");
 
 const router = express.Router();
 
+
 router.post("/login", Validationschema(Loginschema), login);
 
 router.post("/register", Validationschema(Registerschema), register);
