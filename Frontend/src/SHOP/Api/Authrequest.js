@@ -1,4 +1,4 @@
-const URL = "https://kuglerstore-production.up.railway.app/";
+const URL = "https://kuglerstore-production.up.railway.app";
 
 export async function RegisterReq(user) {
   try {
