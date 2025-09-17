@@ -1,6 +1,5 @@
 const { pool } = require("../db/db");
-const bcrypt = require("bcrypt");
-const jsonwebtoken = require("jsonwebtoken");
+const {hashPassword, comparePassword, generateToken, verifyToken} = require("../utils/utils")
 
 async function register(req, res) {
   try {
@@ -16,18 +15,14 @@ async function register(req, res) {
     if (user)
       return res.status(400).json({ error: "That user already exists" });
 
-    const hasedpassword = await bcrypt.hash(password, 10);
+    const hasedpassword = await hashPassword(password)
 
     const [result] = await pool.execute(
       "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
       [username, email, hasedpassword]
     );
 
-    const token = jsonwebtoken.sign(
-      { id: result.insertId },
-      process.env.JWT_SECRET,
-      { expiresIn: "1h" }
-    );
+    const token = await generateToken(result.insertId, process.env.JWT_SECRET, "1h")
 
     res
       .cookie("token", token, {
@@ -54,13 +49,10 @@ async function login(req, res) {
     const user = rows[0];
     if (!user) return res.status(400).json({ error: "User not found" });
 
-    const passwordfound = await bcrypt.compare(password, user.password);
-    if (!passwordfound)
-      return res.status(400).json({ error: "Incorret password" });
+  const passwordfound = await comparePassword(password, user.password)
+  if (passwordfound == null) return res.status(400).json({ error: "Incorret password" });
 
-    const token = jsonwebtoken.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+  const token = await generateToken(user.id, process.env.JWT_SECRET, "1h")
 
     return res
       .cookie("token", token, {
@@ -93,19 +85,11 @@ async function verify(req, res) {
   const token = req.cookies.token;
   if (!token) return res.status(401).json({ error: "Unauthorized" });
 
-  jsonwebtoken.verify(token, process.env.JWT_SECRET, async (err, tok) => {
-    if (err) return res.status(401).json({ error: "Unauthorized" });
-
-    const [rows] = await pool.execute("SELECT * FROM users WHERE id = ?", [
-      tok.id,
-    ]);
-    const user = rows[0];
-
-    if (!user) return res.status(401).json({ error: "Unauthorized" });
+  const user = verifyToken(token, process.env.JWT_SECRET)
+ if (user == null) return res.status(401).json({ error: "Unauthorized" });
 
     return res.json({ message: "valid token", user });
-  });
-}
+  };
 
 module.exports = {
   login,
