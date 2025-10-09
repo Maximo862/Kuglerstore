@@ -27,8 +27,8 @@ async function register(req, res) {
     res
       .cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        secure: true,
+        sameSite: "none",
       })
       .json({
         message: "User created",
@@ -57,8 +57,8 @@ async function login(req, res) {
     return res
       .cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        secure: true,
+        sameSite: "none",
       })
       .json({
         message: "Succesful login",
@@ -72,8 +72,8 @@ async function login(req, res) {
 async function logout(req, res) {
   const cookieOptions = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    secure: true,
+    sameSite: "none",
     expires: new Date(0),
   };
 
