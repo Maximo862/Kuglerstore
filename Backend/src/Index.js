@@ -28,7 +28,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.options("*", cors());
+app.options("/", cors());
 
 app.use(cookieparser());
 app.use(router);
